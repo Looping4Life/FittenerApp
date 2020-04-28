@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FittenerApp</string>
+    <string name="InputField"></string>
+    <string name="entry_button">Add Entry</string>
 </resources>

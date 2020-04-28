@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
     private static final String PREFS = "SavedValues";
@@ -24,11 +25,10 @@ public class MainActivity extends AppCompatActivity {
             String s = Integer.toString(i);
             lh.getEntryList().add(new Entry(pref.getString(s, ""), pref.getFloat(s, 0), pref.getInt(s, 0)));
         }
-
     }
 
-    public void ButtonPressed(){
-        Intent intent = new Intent(MainActivity.this, Calendar.class);
+    public void ButtonPressed(View view){
+        Intent intent = new Intent(MainActivity.this, Calendar.class);//TODO: Update list instead
         startActivity(intent);
     }
 
