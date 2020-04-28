@@ -5,21 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "com.examplemyfirstapp.MESSAGE";
+public class ProfileActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_profile);
     }
-    // Creates the top action bar
+    // Creates the action navbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -35,18 +33,17 @@ public class MainActivity extends AppCompatActivity {
                 // Toast messages are placeholder for the code that starts a new activity
                 Toast.makeText(this, "Item 1 selected", Toast.LENGTH_SHORT).show();
                 return true;
-             // Profile item
+            // Profile item
             case R.id.item2:
                 Intent intent = new Intent(this, ProfileActivity.class);
                 startActivity(intent);
                 return true;
-             // Settings item
+            // Settings item
             case R.id.item3:
                 Toast.makeText(this, "Item 3 selected", Toast.LENGTH_SHORT).show();
                 return true;
             default:
-            return super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected(item);
         }
-
     }
 }
