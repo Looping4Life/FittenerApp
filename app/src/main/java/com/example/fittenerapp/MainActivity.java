@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,14 +29,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
         lh = ListHolder.getInstance();
         int listSize = pref.getInt(LISTSIZE, 0);
         if(listSize > 0) {
             for (int i = 0; i < listSize; i++) {
                 String s = Integer.toString(i);
-                lh.getEntryList().add(new Entry(pref.getString("entrydata " + s, ""), pref.getFloat("entrydata " + s, 0), pref.getInt("entrydata " + s, 0)));
+                lh.AddEntry(new Entry(pref.getString("string " + s, "DEFAULT"), pref.getFloat("float " + s, 0), pref.getInt("integer " + s, 0)));
             }
         }
         editText = findViewById(R.id.editText);
@@ -61,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < listSize; i++) {
                 Entry entry = lh.getEntryList().get(i);
                 String s = Integer.toString(i);
-                edit.putString("entrydata " + s, entry.toString());
-                edit.putFloat("entrydata " + s, entry.weight);
-                edit.putInt("entrydata " + s, entry.height);
+                edit.putString("string " + s, entry.date);
+                edit.putFloat("float " + s, entry.weight);//TODO fix!!
+                edit.putInt("integer " + s, entry.height);
 
             }
             edit.putInt(LISTSIZE, listSize);
