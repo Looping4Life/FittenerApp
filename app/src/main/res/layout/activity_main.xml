@@ -6,25 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:onClick="ButtonPressed"
-        android:text="@string/entry_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.897"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
         android:id="@+id/editText"
-        android:layout_width="91dp"
+        android:layout_width="81dp"
         android:layout_height="45dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="Weight"
+        android:hint="@string/weight"
         android:inputType="textPersonName"
         android:text="@string/InputField"
         android:textAlignment="center"
@@ -32,5 +20,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="75dp"
+        android:onClick="ButtonPressed"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/add_entry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="Button"
+        app:layout_constraintBaseline_toBaselineOf="@+id/calendar"
+        app:layout_constraintEnd_toStartOf="@+id/calendar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
