@@ -50,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, Calendar.class);
             startActivity(intent);
         }
+        if(view == findViewById(R.id.reset_prefs)){
+            SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
+            SharedPreferences.Editor edit = pref.edit();
+            edit.clear();
+            edit.commit();
+            lh.getEntryList().clear();
+        }
     }
 
     @Override
