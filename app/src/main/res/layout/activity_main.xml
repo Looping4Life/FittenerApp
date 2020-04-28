@@ -13,7 +13,7 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/weight"
-        android:inputType="textPersonName"
+        android:inputType="numberDecimal"
         android:text="@string/InputField"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"

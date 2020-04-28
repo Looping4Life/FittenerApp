@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
         lh = ListHolder.getInstance();
+        lh.getEntryList().clear();
         int listSize = pref.getInt(LISTSIZE, 0);
         if(listSize > 0) {
             for (int i = 0; i < listSize; i++) {
@@ -42,11 +43,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ButtonPressed(View view){
-        if(view == findViewById(R.id.add_entry)){
+        if(view == findViewById(R.id.add_entry) && !editText.getText().toString().isEmpty()){
             lh.getEntryList().add(new Entry(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), Float.parseFloat(editText.getText().toString()), 180));
         }
         if(view == findViewById(R.id.calendar)){
-            Intent intent = new Intent(MainActivity.this, Calendar.class);//TODO: Update list instead
+            Intent intent = new Intent(MainActivity.this, Calendar.class);
             startActivity(intent);
         }
     }
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 Entry entry = lh.getEntryList().get(i);
                 String s = Integer.toString(i);
                 edit.putString("string " + s, entry.date);
-                edit.putFloat("float " + s, entry.weight);//TODO fix!!
+                edit.putFloat("float " + s, entry.weight);
                 edit.putInt("integer " + s, entry.height);
 
             }
