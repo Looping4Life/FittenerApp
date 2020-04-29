@@ -20,13 +20,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Class for the user's details
+ * @author Janne Kaukua, Jan Buben
+ * @version 0.1 28/4/2020
+ */
 public class MainActivity extends AppCompatActivity {
     private static final String PREFS = "SavedValues";
     private static final String LISTSIZE = "List size";
-    private ListHolder lh;
+    public static final String EXTRA_MESSAGE = "com.examplemyfirstapp.MESSAGE";
+    private ListHolder lh; //Singleton for holding the entry history
     private EditText editText;
 
-    public static final String EXTRA_MESSAGE = "com.examplemyfirstapp.MESSAGE";
+    /**
+     *
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void ButtonPressed(View view){
         if(view == findViewById(R.id.add_entry) && !editText.getText().toString().isEmpty()){
-            lh.getEntryList().add(new Entry(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()), Float.parseFloat(editText.getText().toString()), 180));
-        }
-        if(view == findViewById(R.id.calendar)){
-            Intent intent = new Intent(MainActivity.this, Calendar.class);
-            startActivity(intent);
+            lh.getEntryList().add(new Entry(new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date()), Float.parseFloat(editText.getText().toString()), 180));//TODO: Change to look for height
         }
         if(view == findViewById(R.id.reset_prefs)){
             SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
