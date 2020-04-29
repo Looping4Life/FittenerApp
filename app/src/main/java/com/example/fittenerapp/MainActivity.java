@@ -3,6 +3,7 @@ package com.example.fittenerapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,12 +28,14 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     private static final String PREFS = "SavedValues";
     private static final String LISTSIZE = "List size";
+    public static final String EXTRA_MESSAGE = "com.examplemyfirstapp.MESSAGE";
     private ListHolder lh; //Singleton for holding the entry history
     private EditText editText;
 
     /**
      *
      */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,25 +89,30 @@ public class MainActivity extends AppCompatActivity {
             edit.commit();
         }
     }
-
+    // Creates the top action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.example_menu, menu);
         return true;
     }
-
+    // Onclick selection for the action bar items
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            // List item
             case R.id.item1:
-                Toast.makeText(this, "Item selected", Toast.LENGTH_SHORT).show();
+                Intent calendarIntent = new Intent(this, Calendar.class);
+                startActivity(calendarIntent);
                 return true;
+            // Profile item
             case R.id.item2:
-                Toast.makeText(this, "Item selected", Toast.LENGTH_SHORT).show();
+                Intent profileIntent = new Intent(this, ProfileActivity.class);
+                startActivity(profileIntent);
                 return true;
+             // Settings item
             case R.id.item3:
-                Toast.makeText(this, "Item selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Item 3 selected", Toast.LENGTH_SHORT).show();
                 return true;
             default:
             return super.onOptionsItemSelected(item);
