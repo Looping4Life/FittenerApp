@@ -57,10 +57,6 @@ public class MainActivity extends AppCompatActivity {
         if(view == findViewById(R.id.add_entry) && !editText.getText().toString().isEmpty()){
             lh.getEntryList().add(new Entry(new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date()), Float.parseFloat(editText.getText().toString()), 180));//TODO: Change to look for height
         }
-        if(view == findViewById(R.id.calendar)){
-            Intent intent = new Intent(MainActivity.this, Calendar.class);
-            startActivity(intent);
-        }
         if(view == findViewById(R.id.reset_prefs)){
             SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
             SharedPreferences.Editor edit = pref.edit();

@@ -12,6 +12,6 @@ public class Entry {
     }
 
     public String toString(){
-        return date + " " + weight + " " + height;
+        return date;
     }
 }
