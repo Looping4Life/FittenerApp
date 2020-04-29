@@ -6,8 +6,8 @@ package com.example.fittenerapp;
  * @version 0.1 27/4/2020
  */
 public class Person {
-    private int height;
-    private int weight;
+    private float height;
+    private float weight;
     private float bmi;
 
     /**
@@ -16,7 +16,7 @@ public class Person {
      * @param weight int, the weight of the person (integer)
      * @param bmi float, the BMI-value of the person. (float)
      */
-    public Person(int height, int weight, float bmi) {
+    public Person(float height, float weight, float bmi) {
         this.height = height;
         this.weight = weight;
         this.bmi = bmi;
@@ -26,7 +26,7 @@ public class Person {
      * Method for setting an updated weight to the person
      * @param newWeight int, sets the new value for weight (integer)
      */
-    public void setWeight(int newWeight) {
+    public void setWeight(float newWeight) {
         this.weight = newWeight;
     }
 
@@ -34,7 +34,7 @@ public class Person {
      * Method for setting on updated height to the person
      * @param newHeight int, sets the value for height (integer)
      */
-    public void setHeight(int newHeight) {
+    public void setHeight(float newHeight) {
         this.height = newHeight;
     }
 
@@ -43,10 +43,20 @@ public class Person {
      * @return returns the BMI-value
      */
     public String getBMI() {
-        this.bmi = this.weight / this.height / this.height;
+        this.height = this.height / 100;
+        this.bmi = this.weight / (this.height * this.height);
         return Float.toString(this.bmi);
     }
 
+    public String checkBMI() {
+        if (this.bmi <= 18) {
+            return "Underweight";
+        } else if (this.bmi >= 25) {
+            return "Overweight";
+        } else {
+            return "Ideal weight";
+        }
+    }
 
 
     /**
@@ -54,7 +64,7 @@ public class Person {
      * @return returns the values as String
      */
     public String getPerson() {
-        return Integer.toString(this.height) + " cm" + " " + Integer.toString(this.weight) + "kg"
+        return Float.toString(this.height) + " cm" + " " + Float.toString(this.weight) + "kg"
         + " " + Float.toString(this.bmi);
     }
 }
