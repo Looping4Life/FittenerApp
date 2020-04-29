@@ -93,13 +93,13 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // List item
             case R.id.item1:
-                // Toast messages are placeholder for the code that starts a new activity
-                Toast.makeText(this, "Item 1 selected", Toast.LENGTH_SHORT).show();
+                Intent calendarIntent = new Intent(this, Calendar.class);
+                startActivity(calendarIntent);
                 return true;
-             // Profile item
+            // Profile item
             case R.id.item2:
-                Intent intent = new Intent(this, ProfileActivity.class);
-                startActivity(intent);
+                Intent profileIntent = new Intent(this, ProfileActivity.class);
+                startActivity(profileIntent);
                 return true;
              // Settings item
             case R.id.item3:
