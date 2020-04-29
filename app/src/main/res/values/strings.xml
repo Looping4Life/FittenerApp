@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FittenerApp</string>
+    <string name="InputField">""</string>
+    <string name="entry_button">Add Entry</string>
+    <string name="weight">Weight</string>
+    <string name="add_entry_button">Add Entry</string>
+    <string name="clear_data_button">Reset</string>
+    <string name="calendar_button">Calendar</string>
 </resources>

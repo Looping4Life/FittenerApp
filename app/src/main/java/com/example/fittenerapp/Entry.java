@@ -1,7 +1,7 @@
 package com.example.fittenerapp;
 
 public class Entry {
-    private String date;
+    public String date;
     public float weight;
     public int height;
 
@@ -12,6 +12,6 @@ public class Entry {
     }
 
     public String toString(){
-        return date;
+        return date + " " + weight + " " + height;
     }
 }
