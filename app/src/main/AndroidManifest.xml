@@ -10,9 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ProfileActivity" android:parentActivityName=".MainActivity" />
-        <activity android:name=".SettingsActivity"/>
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".SettingsActivity" />
+        <activity android:name=".SettingsActivity" android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".Calendar"
             android:parentActivityName=".MainActivity" />
