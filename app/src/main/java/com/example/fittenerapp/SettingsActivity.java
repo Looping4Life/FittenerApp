@@ -7,13 +7,18 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -61,7 +66,6 @@ public class SettingsActivity extends AppCompatActivity {
     public void aboutPressed(View view){
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
-
         View popupView = inflater.inflate(R.layout.about_popup, null);
 
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -77,5 +81,35 @@ public class SettingsActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    // Creates the top action bar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.example_menu, menu);
+        return true;
+    }
+    // Onclick selection for the action bar items
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            // List item
+            case R.id.item1:
+                Intent calendarIntent = new Intent(this, Calendar.class);
+                startActivity(calendarIntent);
+                return true;
+            // Profile item
+            case R.id.item2:
+                Intent profileIntent = new Intent(this, ProfileActivity.class);
+                startActivity(profileIntent);
+                return true;
+            // Settings item
+            case R.id.item3:
+                Toast.makeText(this, "Item 3 selected", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -12,7 +12,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
-        android:text="Creators:\nJan Buben, Janne Kaukua, Alexander San Miguel\n\nCopyright \u00A9 2020 Q-Squad. All rights reserved"
+        android:text="Creators:\nJan Buben, Janne Kaukua, Alexander San Miguel\n\nCopyright \u00A9 2020 Q-Squad. \nAll rights reserved"
         android:textColorLink="@color/colorAccent"
         android:textSize="16sp" />
 
