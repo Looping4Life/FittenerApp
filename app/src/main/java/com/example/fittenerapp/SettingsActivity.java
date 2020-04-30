@@ -106,7 +106,7 @@ public class SettingsActivity extends AppCompatActivity {
                 return true;
             // Settings item
             case R.id.item3:
-                Toast.makeText(this, "Item 3 selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You're already here!", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
