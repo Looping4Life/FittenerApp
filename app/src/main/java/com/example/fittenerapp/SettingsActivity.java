@@ -35,6 +35,11 @@ public class SettingsActivity extends AppCompatActivity {
     private EditText editText;
     Button resetButton;
 
+    /**
+     * Method sets a view of the settings page, and implements an alert dialog if the user attempts to delete their history.
+     * @param savedInstanceState
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +68,11 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method for when the user presses the "about" button. App will then call a popup layout that includes a view of the creators, and copyright information.
+     * @param view Used to set the aboutPressed event.
+     */
+
     public void aboutPressed(View view){
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -83,14 +93,22 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
-    // Creates the top action bar
+    /**
+     * Method creates the action bar on top of the screen so the user can navigate through the app.
+     * @param menu creates the menu
+     * @return returns the view
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.example_menu, menu);
         return true;
     }
-    // Onclick selection for the action bar items
+    /**
+     * Method creates the items and their onclick events for the action bar so the user can click on them. The switch statement is used to differentiate each button
+     * @param item creates the items
+     * @return completes each case on the switch statement
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
