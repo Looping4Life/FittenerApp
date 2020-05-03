@@ -60,6 +60,13 @@ public class ProfileActivity extends AppCompatActivity {
         if (et2.length() > 0) {
             person.setWeight(Float.parseFloat(et2.getText().toString()));
         }
+        // Checks if fields are empty
+        if(et.length() == 0 || et2.length() == 0){
+            findViewById(R.id.fillAllFields_text).setVisibility(View.VISIBLE);
+            return;
+        } else {
+            findViewById(R.id.fillAllFields_text).setVisibility(View.GONE);
+        }
 
         TextView tv = (TextView) findViewById(R.id.bmi);
         tv.setText(person.getBMI());
