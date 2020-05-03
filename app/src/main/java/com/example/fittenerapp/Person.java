@@ -45,14 +45,18 @@ public class Person {
 
     /**
      * Method calculates the BMI using the weight and height of the person (height has to be meters!)
-     * @return returns the BMI-value
+     * @return returns the BMI-value, returns 0 and asks for valid input if calculation leads to NaN
      */
     public String getBMI() {
+        // Gets the centimeter value by dividing with 100
         float height = this.height / 100f;
+        // The calculation for the BMI
         this.bmi = this.weight / (height * height);
+        // Checks if the BMI is not a number and returns 0 if it is
         if (isNaN(this.bmi)) {
             return "0";
         }
+        // Returns the value with the accuracy of 2 decimals
         return Float.toString(Math.round(this.bmi * 100.0f) / 100.0f);
     }
 
@@ -61,6 +65,7 @@ public class Person {
      * @return returns the feedback as a String (String)
      */
     public String checkBMI() {
+        // If the BMI calculator gives a Non number value, returns the following line. Otherwise check with the other values.
         if (isNaN(this.bmi)) {
             return "Please input valid values";
         }
@@ -78,7 +83,7 @@ public class Person {
 
 
     /**
-     * Method gets the person's values
+     * Method gets the person's values and prints them out
      * @return returns the values as String
      */
     public String getPerson() {

@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Class is for the Profile page, the user can save their current weight and height here.
+ * Class is for the Profile page, the user can save their current weight and height here. The inputs are validated and the values are added to the list and saved to sharedprefs.
  * @author Jan Buben, Janne Kaukua
  * @version 0.1 30/04/2020
  */
@@ -42,6 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        // Creates the person and list instances which are used to get the values elsewhere
         person = new Person(0,0,0);
         lh = ListHolder.getInstance();
     }
@@ -51,32 +52,34 @@ public class ProfileActivity extends AppCompatActivity {
      * @param View Used to set the onClick event
      */
     public void onClickSaveValues(View View) {
+        // Gets the height TextView and puts the the value into the Person-class
         EditText et = (EditText) findViewById(R.id.height1);
         if (et.length() > 0) {
             person.setHeight(Float.parseFloat(et.getText().toString()));
         }
-
+        // Gets the weight Textview and puts the value into the Person-class
         EditText et2 = (EditText) findViewById(R.id.weight1);
         if (et2.length() > 0) {
             person.setWeight(Float.parseFloat(et2.getText().toString()));
         }
-        // Checks if fields are empty
+        // Checks if fields are empty and shows an error message if they are
         if(et.length() == 0 || et2.length() == 0){
             findViewById(R.id.fillAllFields_text).setVisibility(View.VISIBLE);
             return;
         } else {
             findViewById(R.id.fillAllFields_text).setVisibility(View.GONE);
         }
-
+        // Gets the BMI value from the Person-class and displays the calculation's value
         TextView tv = (TextView) findViewById(R.id.bmi);
         tv.setText(person.getBMI());
-
+        // Uses the method in the Person-class to check the value, and gives feedback to the user if they are overweight, underweight or the ideal weight
         TextView tv2 = (TextView) findViewById(R.id.fatorfit);
         tv2.setText(person.checkBMI());
+        // Puts the values into the listview
         date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
         ListHolder.getInstance().AddEntry(new Entry(date, person.weight, Math.round(person.height)));//TODO: add only if it does not exist
         lh.setListSize(lh.getListSize()+1);
-
+        // Sets the height for the person and puts saves the values into Sharedprefs so values are kept even after closing the application
         lh.setHeight(Math.round(person.height));
         SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
@@ -108,17 +111,17 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            // List item
+            // List item, on clicking the item starts the list page
             case R.id.item1:
                 Intent calendarIntent = new Intent(this, Calendar.class);
                 startActivity(calendarIntent);
                 return true;
-            // Profile item
+            // Profile item, on clicking the item, opens the profile page
             case R.id.item2:
                 Intent profileIntent = new Intent(this, ProfileActivity.class);
                 startActivity(profileIntent);
                 return true;
-            // Settings item
+            // Settings item, on clicking the item starts the settings page
             case R.id.item3:
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
                 startActivity(settingsIntent);
