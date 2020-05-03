@@ -4,8 +4,8 @@ import java.util.ArrayList;
 public class ListHolder {
     private static final ListHolder listHolder = new ListHolder();
     private ArrayList<Entry> entryList;
-    private int listSize;
-    private int height;
+    private int listSize = 0;
+    private int height = 0;
 
     public static ListHolder getInstance(){
         return listHolder;
