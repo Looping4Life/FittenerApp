@@ -14,6 +14,7 @@
         android:ems="10"
         android:hint="Height (cm)"
         android:inputType="number"
+        android:maxLength="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,6 +27,7 @@
         android:ems="10"
         android:hint="Weight (Kilograms)"
         android:inputType="numberDecimal"
+        android:maxLength="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/height1" />
@@ -63,11 +65,13 @@
 
     <TextView
         android:id="@+id/bmi"
-        android:layout_width="84dp"
+        android:layout_width="80dp"
         android:layout_height="21dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:text="BMI"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
@@ -85,11 +89,14 @@
 
     <TextView
         android:id="@+id/fatorfit"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
         android:text="Feedback"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bmi" />
 
