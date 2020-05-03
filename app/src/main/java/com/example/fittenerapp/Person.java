@@ -1,5 +1,7 @@
 package com.example.fittenerapp;
 
+import android.util.Log;
+
 import static java.lang.Float.isNaN;
 
 /**
@@ -9,9 +11,9 @@ import static java.lang.Float.isNaN;
  */
 public class Person {
     public static boolean isNaN;
-    private float height;
-    private float weight;
-    private float bmi;
+    public float height;
+    public float weight;
+    public float bmi;
 
     /**
      * Constructor that defines all the variables and their values
@@ -46,12 +48,12 @@ public class Person {
      * @return returns the BMI-value
      */
     public String getBMI() {
-        this.height = this.height / 100;
-        this.bmi = this.weight / (this.height * this.height);
+        float height = this.height / 100f;
+        this.bmi = this.weight / (height * height);
         if (isNaN(this.bmi)) {
             return "0";
         }
-        return Float.toString(this.bmi);
+        return Float.toString(Math.round(this.bmi * 100.0f) / 100.0f);
     }
 
     /**

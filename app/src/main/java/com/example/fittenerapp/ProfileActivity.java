@@ -3,7 +3,9 @@ package com.example.fittenerapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,13 +16,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
 /**
  * Class is for the Profile page, the user can save their current weight and height here.
  * @author Jan Buben
  * @version 0.1 30/04/2020
  */
 public class ProfileActivity extends AppCompatActivity {
-    Person person;
+    private static final String PREFS = "SavedValues";
+    private static final String LISTSIZE = "List size";
+    private ListHolder lh;
+    private String date;
+    private Person person;
+    private Boolean entryAdded = false;
 
     /**
      * Method sets the view and creates a person object using the Person.class
@@ -30,8 +42,8 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
         person = new Person(0,0,0);
+        lh = ListHolder.getInstance();
     }
 
     /**
@@ -41,18 +53,33 @@ public class ProfileActivity extends AppCompatActivity {
     public void onClickSaveValues(View View) {
         EditText et = (EditText) findViewById(R.id.height1);
         if (et.length() > 0) {
-            person.setHeight(Integer.parseInt(et.getText().toString()));
+            person.setHeight(Float.parseFloat(et.getText().toString()));
         }
 
         EditText et2 = (EditText) findViewById(R.id.weight1);
         if (et2.length() > 0) {
-            person.setWeight(Integer.parseInt(et2.getText().toString()));
+            person.setWeight(Float.parseFloat(et2.getText().toString()));
         }
+
         TextView tv = (TextView) findViewById(R.id.bmi);
         tv.setText(person.getBMI());
 
         TextView tv2 = (TextView) findViewById(R.id.fatorfit);
         tv2.setText(person.checkBMI());
+        date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+        ListHolder.getInstance().AddEntry(new Entry(date, person.weight, Math.round(person.height)));//TODO: add only if it does not exist
+        lh.setListSize(lh.getListSize()+1);
+
+        lh.setHeight(Math.round(person.height));
+        SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
+        SharedPreferences.Editor edit = pref.edit();
+
+        String s = Integer.toString(lh.getListSize()-1);
+        edit.putString("string " + s, date);
+        edit.putFloat("float " + s, person.weight);
+        edit.putInt("integer " + s, Math.round(person.height));
+        edit.putInt(LISTSIZE, lh.getListSize());
+        edit.commit();
     }
 
     /**
