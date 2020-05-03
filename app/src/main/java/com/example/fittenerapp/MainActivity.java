@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         editText = findViewById(R.id.editText);
+        lh.setListSize(listSize);
     }
 
     public void ButtonPressed(View view){
