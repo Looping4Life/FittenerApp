@@ -61,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
                                 SharedPreferences.Editor edit = pref.edit();
                                 edit.clear();
                                 edit.commit();
-                                lh.getEntryList().clear();
+                                lh.reset();
                             }
                         }).setNegativeButton("Nu uh", null);
                 AlertDialog alert = builder.create();

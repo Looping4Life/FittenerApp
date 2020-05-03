@@ -31,4 +31,9 @@ public class ListHolder {
     public int getHeight(){
         return height;
     }
+    public void reset(){
+        entryList.clear();
+        listSize = 0;
+        height = 0;
+    }
 }
