@@ -63,10 +63,13 @@ public class Person {
             return "Please input valid values";
         }
         else if (this.bmi <= 18) {
-            return "Underweight";
+            return "Underweight. The ideal BMI is between the values of 18-25";
         } else if (this.bmi >= 25) {
-            return "Overweight";
-        } else {
+            return "Overweight. The ideal BMI is between the values of 18-25";
+        } else if (this.bmi <= 22 && this.bmi >= 18) {
+            return "Ideal weight, but you're very close to being underweight, the ideal values are between 18-25";
+        }
+        else {
             return "Ideal weight";
         }
     }
