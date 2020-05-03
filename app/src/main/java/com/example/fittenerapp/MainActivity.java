@@ -1,9 +1,5 @@
 package com.example.fittenerapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,9 +8,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.Toast;
 import android.view.View;
+import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,12 +28,14 @@ public class MainActivity extends AppCompatActivity {
     private static final String LISTSIZE = "List size";
     public static final String EXTRA_MESSAGE = "com.examplemyfirstapp.MESSAGE";
     private ListHolder lh; //Singleton for holding the entry history
+    private Person p;
     private EditText editText;
+    private int listSize;
 
     /**
      *
+     * @param savedInstanceState
      */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
         lh = ListHolder.getInstance();
         lh.getEntryList().clear();
-        int listSize = pref.getInt(LISTSIZE, 0);
+
+        listSize = pref.getInt(LISTSIZE, 0);
         if(listSize > 0) {
             for (int i = 0; i < listSize; i++) {
                 String s = Integer.toString(i);
@@ -55,14 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void ButtonPressed(View view){
         if(view == findViewById(R.id.add_entry) && !editText.getText().toString().isEmpty()){
-            lh.getEntryList().add(new Entry(new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date()), Float.parseFloat(editText.getText().toString()), 180));//TODO: Change to look for height
-        }
-        if(view == findViewById(R.id.reset_prefs)){
-            SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
-            SharedPreferences.Editor edit = pref.edit();
-            edit.clear();
-            edit.commit();
-            lh.getEntryList().clear();
+            Log.d("!!!!!!!!!!!!!!!!!!!!!!", " " + listSize);
+            lh.AddEntry(new Entry(new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date()), Float.parseFloat(editText.getText().toString()), lh.getEntryList().get(listSize-1).height));//TODO: condition for when the list is empty
         }
     }
 
@@ -71,18 +66,17 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
-        int listSize = lh.getEntryList().size();
+        listSize = lh.getEntryList().size();
         if(listSize > 0){
             for (int i = 0; i < listSize; i++) {
                 Entry entry = lh.getEntryList().get(i);
-                String s = Integer.toString(i);
-                edit.putString("string " + s, entry.date);
-                edit.putFloat("float " + s, entry.weight);
-                edit.putInt("integer " + s, entry.height);
-
+                edit.putString("string " + i, entry.date);
+                edit.putFloat("float " + i, entry.weight);
+                edit.putInt("integer " + i, entry.height);
             }
             edit.putInt(LISTSIZE, listSize);
             edit.commit();
+            lh.setListSize(listSize);
         }
     }
     // Creates the top action bar
@@ -114,6 +108,5 @@ public class MainActivity extends AppCompatActivity {
             default:
             return super.onOptionsItemSelected(item);
         }
-
     }
 }

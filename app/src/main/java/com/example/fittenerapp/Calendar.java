@@ -46,9 +46,11 @@ public class Calendar extends AppCompatActivity {
                 findViewById(R.id.constraintLayout).setVisibility(View.VISIBLE);
                 Entry e = (Entry)entryList.get(i);
                 dateView.setText("Date: " + e.date);
-                weightView.setText("Weight: " + Float.toString(e.weight));
-                heightView.setText("Height: " + Float.toString(e.height));
-                bmiView.setText("BMI: ");//TODO: For BMI
+                weightView.setText("Weight: " + e.weight);
+                heightView.setText("Height: " + e.height);
+                float height = (float)e.height / 100;
+                float bmi = e.weight / (height * height);
+                bmiView.setText("BMI: " + Math.round(bmi * 100.0f) / 100.0f);
             }
         });
     }
@@ -83,5 +85,10 @@ public class Calendar extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    @Override
+    public void onPause(){
+        super.onPause();
+        Collections.reverse(entryList);
     }
 }

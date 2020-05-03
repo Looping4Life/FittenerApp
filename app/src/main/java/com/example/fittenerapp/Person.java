@@ -1,14 +1,16 @@
 package com.example.fittenerapp;
 
+import android.util.Log;
+
 /**
  * Class for the user's details
  * @author Jan Buben
  * @version 0.1 27/4/2020
  */
 public class Person {
-    private float height;
-    private float weight;
-    private float bmi;
+    public float height;
+    public float weight;
+    public float bmi;
 
     /**
      * Constructor that defines all the variables and their values
@@ -43,9 +45,9 @@ public class Person {
      * @return returns the BMI-value
      */
     public String getBMI() {
-        this.height = this.height / 100;
-        this.bmi = this.weight / (this.height * this.height);
-        return Float.toString(this.bmi);
+        float height = this.height / 100f;
+        this.bmi = this.weight / (height * height);//
+        return Float.toString(Math.round(this.bmi * 100.0f) / 100.0f);
     }
 
     public String checkBMI() {
