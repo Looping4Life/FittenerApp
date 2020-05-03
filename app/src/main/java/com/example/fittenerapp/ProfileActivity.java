@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Class is for the Profile page, the user can save their current weight and height here.
+ * Class is for the Profile page, the user can save their current weight and height here. Their BMI is shown and the values are used in the ListView.
  * @author Jan Buben
  * @version 0.1 30/04/2020
  */
@@ -47,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     /**
-     * Onclick event, where on the click of the button the method sets the weight and height for the user into the Person-class, and sets them into the viewTexts. Also validates the input so the fields are not empty.
+     * Onclick event, where on the click of the button the method sets the weight and height for the user into the Person-class, and sets them into the viewTexts. Also validates the input so the fields are not empty and adds the values into sharedpreffs to be saved
      * @param View Used to set the onClick event
      */
     public void onClickSaveValues(View View) {
