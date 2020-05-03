@@ -56,8 +56,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void ButtonPressed(View view){
         if(view == findViewById(R.id.add_entry) && !editText.getText().toString().isEmpty()){
-            Log.d("!!!!!!!!!!!!!!!!!!!!!!", " " + listSize);
-            lh.AddEntry(new Entry(new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date()), Float.parseFloat(editText.getText().toString()), lh.getEntryList().get(listSize-1).height));//TODO: condition for when the list is empty
+            if(lh.getListSize() > 0){
+                lh.AddEntry(new Entry(new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date()), Float.parseFloat(editText.getText().toString()), lh.getEntryList().get(listSize-1).height));
+                findViewById(R.id.initialize_profile_text).setVisibility(View.GONE);
+            }else{
+                findViewById(R.id.initialize_profile_text).setVisibility(View.VISIBLE);
+            }
         }
     }
 

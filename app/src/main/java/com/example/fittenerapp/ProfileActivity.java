@@ -23,7 +23,7 @@ import java.util.Locale;
 
 /**
  * Class is for the Profile page, the user can save their current weight and height here.
- * @author Jan Buben
+ * @author Jan Buben, Janne Kaukua
  * @version 0.1 30/04/2020
  */
 public class ProfileActivity extends AppCompatActivity {
@@ -59,6 +59,12 @@ public class ProfileActivity extends AppCompatActivity {
         EditText et2 = (EditText) findViewById(R.id.weight1);
         if (et2.length() > 0) {
             person.setWeight(Float.parseFloat(et2.getText().toString()));
+        }
+        if(et.length() == 0 || et2.length() == 0){
+            findViewById(R.id.fillAllFields_text).setVisibility(View.VISIBLE);
+            return;
+        }else{
+            findViewById(R.id.fillAllFields_text).setVisibility(View.GONE);
         }
 
         TextView tv = (TextView) findViewById(R.id.bmi);
