@@ -44,6 +44,8 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_layout);
+        lh = ListHolder.getInstance();
+
         resetButton = (Button) findViewById(R.id.resetButton);
 
         resetButton.setOnClickListener(new View.OnClickListener() { //Draws an alert dialog to request confirmation of history deletion
