@@ -2,20 +2,23 @@ package com.example.fittenerapp;
 
 import android.util.Log;
 
+import static java.lang.Float.isNaN;
+
 /**
  * Class for the user's details
  * @author Jan Buben
- * @version 0.1 27/4/2020
+ * @version 0.1 27/04/2020
  */
 public class Person {
+    public static boolean isNaN;
     public float height;
     public float weight;
     public float bmi;
 
     /**
      * Constructor that defines all the variables and their values
-     * @param height int, the height of the person (integer)
-     * @param weight int, the weight of the person (integer)
+     * @param height float, the height of the person (float)
+     * @param weight float, the weight of the person (float)
      * @param bmi float, the BMI-value of the person. (float)
      */
     public Person(float height, float weight, float bmi) {
@@ -26,7 +29,7 @@ public class Person {
 
     /**
      * Method for setting an updated weight to the person
-     * @param newWeight int, sets the new value for weight (integer)
+     * @param newWeight float, sets the new value for weight (float)
      */
     public void setWeight(float newWeight) {
         this.weight = newWeight;
@@ -34,7 +37,7 @@ public class Person {
 
     /**
      * Method for setting on updated height to the person
-     * @param newHeight int, sets the value for height (integer)
+     * @param newHeight float, sets the value for height (float)
      */
     public void setHeight(float newHeight) {
         this.height = newHeight;
@@ -46,16 +49,29 @@ public class Person {
      */
     public String getBMI() {
         float height = this.height / 100f;
-        this.bmi = this.weight / (height * height);//
+        this.bmi = this.weight / (height * height);
+        if (isNaN(this.bmi)) {
+            return "0";
+        }
         return Float.toString(Math.round(this.bmi * 100.0f) / 100.0f);
     }
 
+    /**
+     * Method checks the BMI value and gives feedback to the user on if they are overweight, underweight OR the right weight. Also checks that the input is valid.
+     * @return returns the feedback as a String (String)
+     */
     public String checkBMI() {
-        if (this.bmi <= 18) {
-            return "Underweight";
+        if (isNaN(this.bmi)) {
+            return "Please input valid values";
+        }
+        else if (this.bmi <= 18) {
+            return "Underweight. The ideal BMI is between the values of 18-25";
         } else if (this.bmi >= 25) {
-            return "Overweight";
-        } else {
+            return "Overweight. The ideal BMI is between the values of 18-25";
+        } else if (this.bmi <= 22 && this.bmi >= 18) {
+            return "Ideal weight, but you're very close to being underweight, the ideal values are between 18-25";
+        }
+        else {
             return "Ideal weight";
         }
     }

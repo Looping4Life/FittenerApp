@@ -58,15 +58,22 @@ public class Calendar extends AppCompatActivity {
     public void hideInfo(View v){
         findViewById(R.id.constraintLayout).setVisibility(View.GONE);
     }
-
-    // Creates the top action bar
+    /**
+     * Method creates the action bar on top of the screen so the user can navigate through the app.
+     * @param menu creates the menu
+     * @return returns the view
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.example_menu, menu);
         return true;
     }
-    // Onclick selection for the action bar items
+    /**
+     * Method creates the items and their onclick events for the action bar so the user can click on them. The switch statement is used to differentiate each button
+     * @param item creates the items
+     * @return completes each case on the switch statement
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -80,7 +87,8 @@ public class Calendar extends AppCompatActivity {
                 return true;
             // Settings item
             case R.id.item3:
-                Toast.makeText(this, "Item 3 selected", Toast.LENGTH_SHORT).show();
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
