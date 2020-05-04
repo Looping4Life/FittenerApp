@@ -53,17 +53,17 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
 
-                builder.setMessage("You are about to delete everything.\nAre you sure?")
+                builder.setMessage("You are about to delete everything.\nAre you sure?")  // A message to warn the user about the impending deletion
                         .setPositiveButton("Hit me daddy", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                            public void onClick(DialogInterface dialog, int which) { // Sets the message for a positive click, which leads to the clearing of the Calendar list
                                 SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
                                 SharedPreferences.Editor edit = pref.edit();
                                 edit.clear();
                                 edit.commit();
                                 lh.reset();
                             }
-                        }).setNegativeButton("Nu uh", null);
+                        }).setNegativeButton("Nu uh", null); // Sets the message for a negative click.
                 AlertDialog alert = builder.create();
                 alert.show();
             }
@@ -80,8 +80,8 @@ public class SettingsActivity extends AppCompatActivity {
                 getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.about_popup, null);
 
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT; // sets the width of the popup
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT; // sets the height of the popup
         boolean focusable = true;
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
         popupWindow.showAtLocation(view, Gravity.CENTER, 0,0);
