@@ -76,7 +76,7 @@ public class Calendar extends AppCompatActivity {
     }
 
     public void findEntry(View view){
-        String s = ((EditText)findViewById(R.id.find_view)).getText().toString();
+        String s = ((EditText)findViewById(R.id.find_view)).getText().toString().trim();
         for (int i = 0; i < entryList.size(); i++) {
             Entry entry = (Entry) entryList.get(i);
             if(entry.date.equals(s)){
