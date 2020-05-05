@@ -12,7 +12,7 @@
         android:layout_height="60dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Find by date"
+        android:hint="DD/MM/YYYY"
         android:inputType="textPersonName"
         android:onClick="findEntry"
         android:textSize="36sp"

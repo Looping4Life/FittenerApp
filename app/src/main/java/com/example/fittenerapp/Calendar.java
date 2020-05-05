@@ -75,6 +75,10 @@ public class Calendar extends AppCompatActivity {
         findViewById(R.id.constraintLayout).setVisibility(View.GONE);
     }
 
+    /**
+     * This is for finding a specific entry by searching for it's date
+     * @param view
+     */
     public void findEntry(View view){
         String s = ((EditText)findViewById(R.id.find_view)).getText().toString().trim();
         for (int i = 0; i < entryList.size(); i++) {
@@ -87,7 +91,7 @@ public class Calendar extends AppCompatActivity {
                 float height = (float)entry.height / 100;
                 float bmi = entry.weight / (height * height);
                 bmiView.setText("BMI: " + Math.round(bmi * 100.0f) / 100.0f);
-                ((EditText)findViewById(R.id.find_view)).setHint("Find by date");
+                ((EditText)findViewById(R.id.find_view)).setHint("dd/mm/yyyy");
                 ((EditText)findViewById(R.id.find_view)).setHintTextColor(Color.LTGRAY);
                 return;
             }
