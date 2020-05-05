@@ -1,7 +1,6 @@
 package com.example.fittenerapp;
 
 import android.util.Log;
-
 import static java.lang.Float.isNaN;
 
 /**

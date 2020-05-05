@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,19 +20,17 @@ import java.util.Locale;
 /**
  * Class for the user's details
  * @author Janne Kaukua, Jan Buben
- * @version 0.1 28/4/2020
+ * @version 0.2 24/5/2020
  */
 public class MainActivity extends AppCompatActivity {
     private static final String PREFS = "SavedValues";
     private static final String LISTSIZE = "List size";
-    public static final String EXTRA_MESSAGE = "com.examplemyfirstapp.MESSAGE";
-    private ListHolder lh; //Singleton for holding the entry history
-    private Person p;
-    private EditText editText;
+    private ListHolder listHolder; //Singleton for holding the entry history
+    private EditText weightText; //Input field for weight
     private int listSize;
 
     /**
-     *
+     * Load user data from shared preferences, initialize variables
      * @param savedInstanceState
      */
     @Override
@@ -41,24 +38,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
-        lh = ListHolder.getInstance();
-        lh.getEntryList().clear();
-
+        listHolder = ListHolder.getInstance();
+        listHolder.getEntryList().clear();
         listSize = pref.getInt(LISTSIZE, 0);
+        //If we have saved data, add saved entries to the singleton
         if(listSize > 0) {
             for (int i = 0; i < listSize; i++) {
                 String s = Integer.toString(i);
-                lh.AddEntry(new Entry(pref.getString("string " + s, "DEFAULT"), pref.getFloat("float " + s, 0), pref.getInt("integer " + s, 0)));
+                listHolder.AddEntry(new Entry(pref.getString("string " + s, "DEFAULT"), pref.getFloat("float " + s, 0), pref.getInt("integer " + s, 0)));
             }
         }
-        editText = findViewById(R.id.editText);
-        lh.setListSize(listSize);
+        weightText = findViewById(R.id.editText);
+        listHolder.setListSize(listSize);
     }
 
+    /**
+     * Add a new entry to ListHolder singleton
+     * @param view
+     */
     public void ButtonPressed(View view){
-        if(view == findViewById(R.id.add_entry) && !editText.getText().toString().isEmpty()){
-            if(lh.getListSize() > 0){
-                lh.AddEntry(new Entry(new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date()), Float.parseFloat(editText.getText().toString()), lh.getEntryList().get(listSize-1).height));
+        if(view == findViewById(R.id.add_entry) && !weightText.getText().toString().isEmpty()){
+            if(listHolder.getListSize() > 0){
+                listHolder.AddEntry(new Entry(new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date()), Float.parseFloat(weightText.getText().toString()), listHolder.getEntryList().get(listSize-1).height));
                 findViewById(R.id.initialize_profile_text).setVisibility(View.GONE);
             }else{
                 findViewById(R.id.initialize_profile_text).setVisibility(View.VISIBLE);
@@ -66,22 +67,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Save data on pause
+     */
     @Override
     public void onPause(){
         super.onPause();
         SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
-        listSize = lh.getEntryList().size();
+        listSize = listHolder.getEntryList().size();
         if(listSize > 0){
             for (int i = 0; i < listSize; i++) {
-                Entry entry = lh.getEntryList().get(i);
+                Entry entry = listHolder.getEntryList().get(i);
                 edit.putString("string " + i, entry.date);
                 edit.putFloat("float " + i, entry.weight);
                 edit.putInt("integer " + i, entry.height);
             }
             edit.putInt(LISTSIZE, listSize);
             edit.commit();
-            lh.setListSize(listSize);
+            listHolder.setListSize(listSize);
         }
     }
     /**
