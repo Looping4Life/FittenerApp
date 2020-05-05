@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Add a new entry to ListHolder singleton
-     * @param view
+     * @param view for the button pressed
      */
     public void ButtonPressed(View view){
         if(view == findViewById(R.id.add_entry) && !weightText.getText().toString().isEmpty()){

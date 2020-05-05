@@ -24,7 +24,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="#49CFB9"
+        android:background="#ECECEC"
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone"

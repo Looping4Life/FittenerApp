@@ -29,7 +29,7 @@ public class ListHolder {
 
     /**
      * For adding entries to the list
-     * @param e
+     * @param e for entry
      */
     public void AddEntry(Entry e){
         entryList.add(e);
@@ -45,7 +45,7 @@ public class ListHolder {
 
     /**
      * For setting the list size when loading from shared preferences
-     * @param size
+     * @param size for list length
      */
     public void setListSize(int size){
         listSize = size;

@@ -67,7 +67,7 @@ public class Calendar extends AppCompatActivity {
 
     /**
      * For hiding the clicked entry's info
-     * @param v
+     * @param v view
      */
     public void hideInfo(View v){
         findViewById(R.id.constraintLayout).setVisibility(View.GONE);
