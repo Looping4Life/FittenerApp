@@ -59,11 +59,19 @@ public class ProfileActivity extends AppCompatActivity {
         }
         // Gets the weight Textview and puts the value into the Person-class
         EditText et2 = (EditText) findViewById(R.id.weight1);
+
         if (et2.length() > 0) {
-            person.setWeight(Float.parseFloat(et2.getText().toString()));
+            try{
+                person.setWeight(Float.parseFloat(et2.getText().toString()));
+            }catch(NumberFormatException nfe){
+                ((TextView)findViewById(R.id.fillAllFields_text)).setText("Input valid values!");
+                findViewById(R.id.fillAllFields_text).setVisibility(View.VISIBLE);
+                return;
+            }
         }
         // Checks if fields are empty and shows an error message if they are
         if(et.length() == 0 || et2.length() == 0){
+            ((TextView)findViewById(R.id.fillAllFields_text)).setText("Fill all fields!");
             findViewById(R.id.fillAllFields_text).setVisibility(View.VISIBLE);
             return;
         } else {

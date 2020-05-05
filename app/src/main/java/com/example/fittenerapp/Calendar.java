@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,6 +73,28 @@ public class Calendar extends AppCompatActivity {
      */
     public void hideInfo(View v){
         findViewById(R.id.constraintLayout).setVisibility(View.GONE);
+    }
+
+    public void findEntry(View view){
+        String s = ((EditText)findViewById(R.id.find_view)).getText().toString();
+        for (int i = 0; i < entryList.size(); i++) {
+            Entry entry = (Entry) entryList.get(i);
+            if(entry.date.equals(s)){
+                findViewById(R.id.constraintLayout).setVisibility(View.VISIBLE);
+                dateView.setText("Date: " + entry.date);
+                weightView.setText("Weight: " + entry.weight);
+                heightView.setText("Height: " + entry.height);
+                float height = (float)entry.height / 100;
+                float bmi = entry.weight / (height * height);
+                bmiView.setText("BMI: " + Math.round(bmi * 100.0f) / 100.0f);
+                ((EditText)findViewById(R.id.find_view)).setHint("Find by date");
+                ((EditText)findViewById(R.id.find_view)).setHintTextColor(Color.LTGRAY);
+                return;
+            }
+        }
+        ((EditText)findViewById(R.id.find_view)).setText("");
+        ((EditText)findViewById(R.id.find_view)).setHint("No result!");
+        ((EditText)findViewById(R.id.find_view)).setHintTextColor(Color.RED);
     }
     /**
      * Method creates the action bar on top of the screen so the user can navigate through the app.

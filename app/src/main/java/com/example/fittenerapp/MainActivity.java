@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,13 +58,18 @@ public class MainActivity extends AppCompatActivity {
      * @param view for the button pressed
      */
     public void ButtonPressed(View view){
-        if(view == findViewById(R.id.add_entry) && !weightText.getText().toString().isEmpty()){
-            if(listHolder.getListSize() > 0){
-                listHolder.AddEntry(new Entry(new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date()), Float.parseFloat(weightText.getText().toString()), listHolder.getEntryList().get(listSize-1).height));
+        if(listHolder.getListSize() > 0){
+            try{
+                Float.parseFloat(weightText.getText().toString());
+                listHolder.AddEntry(new Entry(new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date()), Float.parseFloat(weightText.getText().toString()), listHolder.getEntryList().get(listSize - 1).height));
                 findViewById(R.id.initialize_profile_text).setVisibility(View.GONE);
-            }else{
+            }catch(NumberFormatException nfe){
+                ((TextView) findViewById(R.id.initialize_profile_text)).setText("Input valid values!");
                 findViewById(R.id.initialize_profile_text).setVisibility(View.VISIBLE);
             }
+        }else{
+            ((TextView)findViewById(R.id.initialize_profile_text)).setText("Set up your profile first!");
+            findViewById(R.id.initialize_profile_text).setVisibility(View.VISIBLE);
         }
     }
 
