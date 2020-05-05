@@ -19,6 +19,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * Class for the user's details
+ * @author Janne Kaukua
+ * @version 0.2 05/05/2020
+ */
 public class Calendar extends AppCompatActivity {
     ListView listView;
     ArrayList entryList;
@@ -27,6 +32,11 @@ public class Calendar extends AppCompatActivity {
     TextView heightView;
     TextView bmiView;
 
+    /**
+     * Set on click listener and display the information in a new view
+     * Also reverses the list of entries to display the latest first
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +65,10 @@ public class Calendar extends AppCompatActivity {
         });
     }
 
+    /**
+     * For hiding the clicked entry's info
+     * @param v
+     */
     public void hideInfo(View v){
         findViewById(R.id.constraintLayout).setVisibility(View.GONE);
     }
@@ -94,6 +108,10 @@ public class Calendar extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    /**
+     * Reverts the list of entries back to normal when leaving the activity
+     */
     @Override
     public void onPause(){
         super.onPause();
