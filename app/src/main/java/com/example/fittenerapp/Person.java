@@ -43,7 +43,7 @@ public class Person {
     }
 
     /**
-     * Method calculates the BMI using the weight and height of the person (height has to be meters!)
+     * Method calculates the BMI using the weight and height of the person (height has to be centimeters!)
      * @return returns the BMI-value, returns 0 and asks for valid input if calculation leads to NaN
      */
     public String getBMI() {

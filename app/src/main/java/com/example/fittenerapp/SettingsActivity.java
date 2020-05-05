@@ -48,13 +48,13 @@ public class SettingsActivity extends AppCompatActivity {
 
         resetButton = (Button) findViewById(R.id.resetButton);
 
-        resetButton.setOnClickListener(new View.OnClickListener() { //Draws an alert dialog to request confirmation of history deletion
+        resetButton.setOnClickListener(new View.OnClickListener() { //Draws an alert dialog to request confirmation of history deletion.
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
 
-                builder.setMessage("You are about to delete everything.\nAre you sure?")
-                        .setPositiveButton("Hit me daddy", new DialogInterface.OnClickListener() {
+                builder.setMessage("You are about to delete everything.\nAre you sure?") // Sets the confirmation dialogue, alerts the user about the impending deletion.
+                        .setPositiveButton("Hit me daddy", new DialogInterface.OnClickListener() { // Positive button. After pressing, it will delete the contents of the Calendar list.
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
@@ -63,7 +63,7 @@ public class SettingsActivity extends AppCompatActivity {
                                 edit.commit();
                                 lh.reset();
                             }
-                        }).setNegativeButton("Nu uh", null);
+                        }).setNegativeButton("Nu uh", null); // Negative button. After pressing, the alert dialogue closes.
                 AlertDialog alert = builder.create();
                 alert.show();
             }
@@ -80,9 +80,9 @@ public class SettingsActivity extends AppCompatActivity {
                 getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.about_popup, null);
 
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true;
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT; // Sets width of the popup
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT; // Sets the height of the popup
+        boolean focusable = true; // Makes the popup focusable
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
         popupWindow.showAtLocation(view, Gravity.CENTER, 0,0);
         popupView.setOnTouchListener(new View.OnTouchListener(){
