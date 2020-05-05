@@ -24,7 +24,7 @@ import java.util.Locale;
 /**
  * Class is for the Profile page, the user can save their current weight and height here. The inputs are validated and the values are added to the list and saved to sharedprefs.
  * @author Jan Buben, Janne Kaukua
- * @version 0.1 30/04/2020
+ * @version 0.2 05/05/2020
  */
 public class ProfileActivity extends AppCompatActivity {
     private static final String PREFS = "SavedValues";

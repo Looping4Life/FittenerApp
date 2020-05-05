@@ -26,7 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * Class to implement a Settings activity
  *
  * @author Alexander San Miguel
- * @version 0.1 30/4/2020
+ * @version 0.2 05/05/2020
  */
 
 public class SettingsActivity extends AppCompatActivity {
@@ -83,7 +83,7 @@ public class SettingsActivity extends AppCompatActivity {
         int width = LinearLayout.LayoutParams.WRAP_CONTENT; // Sets width of the popup
         int height = LinearLayout.LayoutParams.WRAP_CONTENT; // Sets the height of the popup
         boolean focusable = true; // Makes the popup focusable
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable); // Creates the popup, while the following line gives it the placement.
         popupWindow.showAtLocation(view, Gravity.CENTER, 0,0);
         popupView.setOnTouchListener(new View.OnTouchListener(){
 

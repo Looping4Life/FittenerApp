@@ -20,7 +20,7 @@ import java.util.Locale;
 /**
  * Class for the user's details
  * @author Janne Kaukua, Jan Buben
- * @version 0.2 24/5/2020
+ * @version 0.2 05/05/2020
  */
 public class MainActivity extends AppCompatActivity {
     private static final String PREFS = "SavedValues";

@@ -6,7 +6,7 @@ import static java.lang.Float.isNaN;
 /**
  * Class for the user's details
  * @author Jan Buben
- * @version 0.1 27/04/2020
+ * @version 0.2 05/05/2020
  */
 public class Person {
     public static boolean isNaN;
