@@ -53,8 +53,8 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
 
-                builder.setMessage("You are about to delete everything.\nAre you sure?") // Sets the confirmation dialogue, alerts the user about the impending deletion.
-                        .setPositiveButton("Hit me daddy", new DialogInterface.OnClickListener() { // Positive button. After pressing, it will delete the contents of the Calendar list.
+                builder.setMessage("Are you sure you want to delete all entries?") // Sets the confirmation dialogue, alerts the user about the impending deletion.
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() { // Positive button. After pressing, it will delete the contents of the Calendar list.
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 SharedPreferences pref = getSharedPreferences(PREFS, Activity.MODE_PRIVATE);
@@ -63,7 +63,7 @@ public class SettingsActivity extends AppCompatActivity {
                                 edit.commit();
                                 lh.reset();
                             }
-                        }).setNegativeButton("Nu uh", null); // Negative button. After pressing, the alert dialogue closes.
+                        }).setNegativeButton("No", null); // Negative button. After pressing, the alert dialogue closes.
                 AlertDialog alert = builder.create();
                 alert.show();
             }
